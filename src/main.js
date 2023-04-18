@@ -40,7 +40,6 @@ const Main = () => {
     setItemToEdit(itemToEditElemnt);
   };
 
-
   const handleStatusEdit = (id) => {
     setId(id);
     setOpenStatusEdit(true);
@@ -60,6 +59,10 @@ const Main = () => {
     console.log(filteredData);
     console.log(taskList);
     setSearchResultList(filteredData);
+
+    if (filteredData.length === 0) {
+      Swal.fire("No match found!", "Please search again");
+    }
   };
 
   const handleDelete = (id) => {
@@ -77,6 +80,7 @@ const Main = () => {
           return item.id !== id;
         });
         setTaskList(filteredData);
+        setSearchResultList([]);
 
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
